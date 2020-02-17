@@ -6,13 +6,13 @@ module.exports = {
   entry: './src/index.js',
 
   devServer: {
-    contentBase: './dist',
+    contentBase: './build',
     open: true
   },
 
   output: {
     filename: '[name].[contenthash].bundle.js',
-    path: path.resolve(__dirname, 'dist')
+    path: path.resolve(__dirname, 'build')
   },
 
   plugins: [

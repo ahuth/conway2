@@ -10,7 +10,7 @@
 
 # production
 /build
-/dist
+/wasm
 
 # misc
 .DS_Store
