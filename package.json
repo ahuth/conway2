@@ -4,7 +4,7 @@
     "asbuild:untouched": "asc assembly/index.ts -b wasm/untouched.wasm -t wasm/untouched.wat --validate --sourceMap --debug",
     "asbuild:optimized": "asc assembly/index.ts -b wasm/optimized.wasm -t wasm/optimized.wat --validate --sourceMap --optimize",
     "asbuild": "npm run asbuild:untouched && npm run asbuild:optimized",
-    "build": "yarn run clean && yarn run asbuild:optimized && webpack --mode production",
+    "build": "yarn run clean && yarn run asbuild && webpack --mode production",
     "clean": "rm -rf build && rm -rf wasm",
     "lint": "eslint --ext .js,.ts ./",
     "start": "yarn run clean && yarn run asbuild && webpack-dev-server --mode development"
