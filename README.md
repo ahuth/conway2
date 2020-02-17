@@ -1,3 +1,3 @@
-# conway-wasm
+# Conway2
 
-WebAssembly version of Conway's Game of Life.
+Conway's Game of Life.

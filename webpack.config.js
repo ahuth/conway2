@@ -16,7 +16,7 @@ module.exports = {
 
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'Conway',
+      title: 'Conway2',
     }),
   ],
 };
