@@ -2,6 +2,8 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
+const isDev = process.env.NODE_ENV !== 'production';
+
 module.exports = {
   entry: './src/index.ts',
 
@@ -11,7 +13,7 @@ module.exports = {
   },
 
   output: {
-    filename: '[name].[contenthash].bundle.js',
+    filename: isDev ? '[name].js' : '[name].[contenthash].js',
     path: path.resolve(__dirname, 'build'),
   },
 
