@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
-  entry: './src/index.js',
+  entry: './src/index.ts',
 
   devServer: {
     contentBase: './build',
@@ -21,4 +21,13 @@ module.exports = {
       title: 'Conway2',
     }),
   ],
+
+  module: {
+    rules: [
+      {
+        test: /\.ts$/,
+        loader: 'babel-loader',
+      },
+    ],
+  },
 };
