@@ -7,7 +7,6 @@ export default class World {
     this.height = height;
     this.width = width;
     this.storage = new Array(height * width).fill(false);
-    this.randomize();
   }
 
   randomize(): void {
