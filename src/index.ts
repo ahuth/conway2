@@ -1,4 +1,5 @@
 import * as Image from './Image';
+import World from './World';
 import './index.css';
 
 const colors = {
@@ -16,14 +17,11 @@ window.addEventListener('DOMContentLoaded', function () {
   const context = canvas.getContext('2d')!;
   const { height, width } = canvas.getBoundingClientRect();
   const imageData = context.createImageData(width, height);
+  const world = new World(height, width);
 
-  for (let x = 0; x < width; x += 1) {
-    for (let y = 0; y < height; y += 1) {
-      const on = Math.random() > 0.2;
-      const color = on ? colors.on : colors.off;
-      Image.setRgb(imageData, x, y, color);
-    }
-  }
+  world.visit(function (x, y, on) {
+    Image.setRgb(imageData, x, y, on ? colors.on : colors.off);
+  });
 
   context.putImageData(imageData, 0, 0);
 });
