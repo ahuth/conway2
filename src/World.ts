@@ -13,7 +13,7 @@ export default class World {
 
   randomize(): void {
     for (let i = 0; i < this.storage.length; i += 1) {
-      this.storage[i] = Math.random() > 0.2;
+      this.storage[i] = Math.random() > (1 / 3);
     }
   }
 
