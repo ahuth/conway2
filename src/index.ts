@@ -2,7 +2,7 @@ import Simulation from './Simulation';
 import './index.css';
 
 window.addEventListener('DOMContentLoaded', function () {
-  const canvas = document.getElementById('canvas')!;
+  const canvas = document.getElementById('canvas');
   const stepButton = document.getElementById('step')!;
 
   if (!(canvas instanceof HTMLCanvasElement)) {
