@@ -8,4 +8,5 @@ body {
 #canvas {
   height: 400px;
   width: 400px;
+  cursor: crosshair;
 }

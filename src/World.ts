@@ -36,6 +36,18 @@ export default class World {
     this.buffer = temp;
   }
 
+  blast(blastX: number, blastY: number): void {
+    this.visit((x, y, _on, index) => {
+      if (x === blastX || y === blastY) {
+        this.buffer[index] = true;
+      }
+    });
+
+    const temp = this.storage;
+    this.storage = this.buffer;
+    this.buffer = temp;
+  }
+
   private getXFromIndex(index: number): number {
     return index % this.width;
   }
