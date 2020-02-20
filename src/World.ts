@@ -31,7 +31,9 @@ export default class World {
       this.buffer[index] = shouldTurnOn(numNeighbors, on);
     });
 
+    const temp = this.storage;
     this.storage = this.buffer;
+    this.buffer = temp;
   }
 
   private getXFromIndex(index: number): number {
