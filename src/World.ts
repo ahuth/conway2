@@ -22,6 +22,10 @@ export default class World {
     }
   }
 
+  step(): void {
+    this.randomize();
+  }
+
   private getCoordFromIndex(index: number): { x: number, y: number } {
     const x = index % this.width;
     const y = Math.floor(index / this.width);

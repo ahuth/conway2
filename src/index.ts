@@ -16,6 +16,6 @@ window.addEventListener('DOMContentLoaded', function () {
   simulation.randomize();
 
   stepButton.addEventListener('click', function () {
-    simulation.randomize();
+    simulation.step();
   });
 });

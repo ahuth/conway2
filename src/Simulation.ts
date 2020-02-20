@@ -8,25 +8,30 @@ const colors = {
 
 export default class Simulation {
   context: CanvasRenderingContext2D;
-  height: number;
-  width: number;
+  imageData: ImageData;
   world: World;
 
   constructor(context: CanvasRenderingContext2D, height: number, width: number) {
     this.context = context;
-    this.height = height;
-    this.width = width;
+    this.imageData = context.createImageData(width, height);
     this.world = new World(height, width);
   }
 
   randomize() {
-    const imageData = this.context.createImageData(this.width, this.height);
     this.world.randomize();
+    this.draw();
+  }
 
-    this.world.visit(function (x, y, on) {
-      Image.setRgb(imageData, x, y, on ? colors.on : colors.off);
+  step() {
+    this.world.step();
+    this.draw();
+  }
+
+  private draw() {
+    this.world.visit((x, y, on) => {
+      Image.setRgb(this.imageData, x, y, on ? colors.on : colors.off);
     });
 
-    this.context.putImageData(imageData, 0, 0);
+    this.context.putImageData(this.imageData, 0, 0);
   }
 }
