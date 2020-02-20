@@ -3,7 +3,6 @@ import './index.css';
 
 window.addEventListener('DOMContentLoaded', function () {
   const canvas = document.getElementById('canvas');
-  const stepButton = document.getElementById('step')!;
 
   if (!(canvas instanceof HTMLCanvasElement)) {
     return;
@@ -15,7 +14,10 @@ window.addEventListener('DOMContentLoaded', function () {
 
   simulation.randomize();
 
-  stepButton.addEventListener('click', function () {
+  function compute() {
     simulation.step();
-  });
+    requestAnimationFrame(compute);
+  }
+
+  compute();
 });

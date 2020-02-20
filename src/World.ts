@@ -19,7 +19,8 @@ export default class World {
 
   visit(callback: (x: number, y: number, value: boolean, index: number) => void): void {
     for (let i = 0; i < this.storage.length; i += 1) {
-      const { x, y } = this.getCoordFromIndex(i);
+      const x = this.getXFromIndex(i);
+      const y = this.getYFromIndex(i);
       callback(x, y, this.storage[i], i);
     }
   }
@@ -33,10 +34,12 @@ export default class World {
     this.storage = this.buffer;
   }
 
-  private getCoordFromIndex(index: number): { x: number, y: number } {
-    const x = index % this.width;
-    const y = Math.floor(index / this.width);
-    return { x, y };
+  private getXFromIndex(index: number): number {
+    return index % this.width;
+  }
+
+  private getYFromIndex(index: number): number {
+    return Math.floor(index / this.width);
   }
 
   private getIndexForCoord(x: number, y: number): number {
@@ -44,21 +47,18 @@ export default class World {
   }
 
   private countNeighbors(x: number, y: number): number {
-    const neighbors = this.getNeighbors(x, y);
-    return neighbors.reduce((acc, on) => (on ? acc + 1 : acc), 0);
-  }
+    let count = 0;
 
-  private getNeighbors(x: number, y: number): boolean[] {
-    return [
-      this.storage[this.getIndexForCoord(x - 1, y + 1)],
-      this.storage[this.getIndexForCoord(x, y + 1)],
-      this.storage[this.getIndexForCoord(x + 1, y + 1)],
-      this.storage[this.getIndexForCoord(x - 1, y)],
-      this.storage[this.getIndexForCoord(x + 1, y)],
-      this.storage[this.getIndexForCoord(x - 1, y - 1)],
-      this.storage[this.getIndexForCoord(x, y - 1)],
-      this.storage[this.getIndexForCoord(x + 1, y - 1)],
-    ];
+    count += this.storage[this.getIndexForCoord(x - 1, y + 1)] ? 1 : 0;
+    count += this.storage[this.getIndexForCoord(x, y + 1)] ? 1 : 0;
+    count += this.storage[this.getIndexForCoord(x + 1, y + 1)] ? 1 : 0;
+    count += this.storage[this.getIndexForCoord(x - 1, y)] ? 1 : 0;
+    count += this.storage[this.getIndexForCoord(x + 1, y)] ? 1 : 0;
+    count += this.storage[this.getIndexForCoord(x - 1, y - 1)] ? 1 : 0;
+    count += this.storage[this.getIndexForCoord(x, y - 1)] ? 1 : 0;
+    count += this.storage[this.getIndexForCoord(x + 1, y - 1)] ? 1 : 0;
+
+    return count;
   }
 }
 
