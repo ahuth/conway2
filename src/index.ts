@@ -9,14 +9,10 @@ window.addEventListener('DOMContentLoaded', function () {
   }
 
   const context = canvas.getContext('2d')!;
-  const { height, width, left, top } = canvas.getBoundingClientRect();
+  const { height, width } = canvas.getBoundingClientRect();
   const simulation = new Simulation(context, height, width);
 
   simulation.randomize();
-
-  canvas.addEventListener('click', function (event) {
-    simulation.blast(event.clientX - left, event.clientY - top);
-  });
 
   function compute() {
     simulation.step();

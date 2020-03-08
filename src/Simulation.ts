@@ -27,11 +27,6 @@ export default class Simulation {
     this.draw();
   }
 
-  blast(x: number, y: number) {
-    this.world.blast(x, y);
-    this.draw();
-  }
-
   private draw() {
     this.world.visit((x, y, on) => {
       Image.setRgb(this.imageData, x, y, on ? colors.on : colors.off);
